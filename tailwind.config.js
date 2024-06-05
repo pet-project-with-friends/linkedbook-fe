@@ -22,6 +22,8 @@ module.exports = withMT({
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-profile":
+          "linear-gradient(180deg, rgba(164,164,164,1) 18%, rgba(255,255,255,1) 55%)",
       },
       colors: {
         backdrop: "#f4f2ee",
@@ -33,6 +35,9 @@ module.exports = withMT({
         des_text: "#595959",
         small_text: "#9a95a7",
         click_title: "#535353",
+        border_element: "#EEEEEE",
+        active_button: "#238766",
+        cancel_button: "#eb0014",
       },
     },
   },

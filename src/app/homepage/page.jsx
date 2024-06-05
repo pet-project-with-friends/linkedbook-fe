@@ -15,7 +15,7 @@ function HomePage() {
 
   return (
     <>
-      <section className="w-full flex justify-center gap-5 bg-backdrop py-10">
+      <section className="w-[90rem] flex justify-center gap-5 py-10">
         <ProfileAside />
         <div className="w-[555px] flex flex-col items-center gap-5">
           <PostBlog setShowPost={setShowPost} setPopupType={setPopupType} />

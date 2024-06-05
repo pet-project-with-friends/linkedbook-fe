@@ -20,7 +20,7 @@ function Artical() {
   const countImage = 13;
   return (
     <>
-      <article className="w-full h-auto p-[20px] bg-boxColor rounded-xl flex flex-col gap-3">
+      <article className="w-full h-auto p-[20px] bg-boxColor rounded-xl flex flex-col gap-3 border-solid border-border_element border-[2px]">
         <div className="flex flex-row items-center justify-between ">
           <div className="flex flex-row items-center gap-2 h-14 ">
             <Avatar

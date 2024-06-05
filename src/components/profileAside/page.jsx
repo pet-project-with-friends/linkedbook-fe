@@ -21,8 +21,8 @@ function ProfileAside() {
     },
   ];
   return (
-    <div className="w-[225px] rounded-xl flex flex-col gap-5">
-      <div className="w-full min-h-60 pb-2 rounded-xl bg-boxColor flex flex-col">
+    <div className="w-[225px] rounded-xl flex flex-col gap-5 ">
+      <div className="w-full min-h-60 pb-2 rounded-xl bg-boxColor flex flex-col border-solid border-border_element border-[2px]">
         <div className="w-full h-24 rounded-t-xl relative flex flex-col">
           <div className="flex-[2_0_0] rounded-t-xl bg-gradient-to-r from-[#a0b4b7] to-[#c2d8db]"></div>
           <div className="flex-[1_0_0]"></div>
