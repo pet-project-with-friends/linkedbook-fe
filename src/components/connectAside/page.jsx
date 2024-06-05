@@ -2,11 +2,12 @@ import { Avatar, Button } from "@material-tailwind/react";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import writingImage from "@/src/Images/writing.jpg";
+import FootSidebar from "../footSidebar/page.jsx";
 
 function ConnectAside() {
   return (
-    <div className="w-[300px] h-auto flex flex-col gap-5">
-      <div className="w-full min-h-40 rounded-xl bg-boxColor flex flex-col gap-3 p-[20px]">
+    <div className="w-[300px] h-auto flex flex-col gap-4">
+      <div className="w-full min-h-40 rounded-xl bg-boxColor flex flex-col gap-3 p-[20px] border-solid border-border_element border-[2px]">
         <h1 className="w-full text-base font-bold text-title">
           Add to your feed
         </h1>
@@ -40,30 +41,33 @@ function ConnectAside() {
           <ArrowRightAltIcon sx={{ color: "black", fontSize: "20px" }} />
         </div>
       </div>
-      <div className="w-full min-h-52 rounded-xl bg-boxColor sticky top-5 flex flex-col items-center gap-4 p-[20px]">
-        <p className="text-small_text text-sm text-center ">
-          More post more chance, writing your own post and sharing to all
-          people.
-        </p>
-        <div className="w-full flex justify-center gap-2">
-          <Avatar
-            src="https://docs.material-tailwind.com/img/face-2.jpg"
-            alt="avatar"
-            size="xl"
-          />
-          <Avatar src={writingImage.src} alt="avatar" size="xl" />
+      <div className="w-full flex flex-col gap-2 sticky top-5 ">
+        <div className="w-full min-h-52 rounded-xl bg-boxColor flex flex-col items-center gap-4 p-[20px] border-solid border-border_element border-[2px]">
+          <p className="text-small_text text-sm text-center ">
+            More post more chance, writing your own post and sharing to all
+            people.
+          </p>
+          <div className="w-full flex justify-center gap-2">
+            <Avatar
+              src="https://docs.material-tailwind.com/img/face-2.jpg"
+              alt="avatar"
+              size="xl"
+            />
+            <Avatar src={writingImage.src} alt="avatar" size="xl" />
+          </div>
+          <p className="text-click_title text-base">
+            Tan Nguyen, lets finish your post
+          </p>
+          <div className="w-full flex justify-center">
+            <Button
+              className="border-solid border-buttonColor border-[1px] py-2 px-10 text-sm rounded-2xl text-buttonColor font-bold"
+              variant="outlined"
+            >
+              Finish my post
+            </Button>
+          </div>
         </div>
-        <p className="text-click_title text-base">
-          Tan Nguyen, lets finish your post
-        </p>
-        <div className="w-full flex justify-center">
-          <Button
-            className="border-solid border-buttonColor border-[1px] py-2 px-10 text-sm rounded-2xl text-buttonColor font-bold"
-            variant="outlined"
-          >
-            Finish my post
-          </Button>
-        </div>
+        <FootSidebar />
       </div>
     </div>
   );

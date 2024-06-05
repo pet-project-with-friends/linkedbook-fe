@@ -10,7 +10,11 @@ export default function RootLayout({ children }) {
   return (
     <Provider store={store}>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <div className="w-full min-h-screen h-auto flex justify-center bg-backdrop">
+            {children}
+          </div>
+        </body>
       </html>
     </Provider>
   );

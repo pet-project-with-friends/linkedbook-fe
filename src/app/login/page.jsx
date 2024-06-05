@@ -1,5 +1,5 @@
 "use client";
-import InputField from "@/components/inputField/page.jsx";
+import InputField from "@/src/components/inputField/page.jsx";
 import { Button } from "@material-tailwind/react";
 import Link from "next/link.js";
 
