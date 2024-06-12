@@ -11,7 +11,7 @@ function PostBlog({ setShowPost, setPopupType }) {
     }
   };
   return (
-    <div className="w-full px-[20px] pt-4 pb-2 bg-boxColor rounded-xl flex flex-col gap-2 border-solid border-border_element border-[2px]">
+    <div className="w-full px-[20px] pt-4 pb-2 bg-boxColor rounded-xl flex flex-col gap-2 border_element ">
       <div className="w-full h-10 flex items-center justify-center gap-2">
         <Avatar
           src="https://docs.material-tailwind.com/img/face-2.jpg"
