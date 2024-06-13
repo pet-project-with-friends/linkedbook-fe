@@ -21,4 +21,9 @@
     .scrollbar::-webkit-scrollbar-thumb:hover {
         background: #c0a0b9;
     }
+
+    .border_element {
+        border: solid 2px #EEEEEE
+    }
+
 }

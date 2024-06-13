@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <Provider store={store}>
       <html lang="en">
         <body className={inter.className}>
-          <div className="w-full min-h-screen h-auto flex justify-center bg-backdrop">
+          <div className="w-full min-h-screen h-max flex justify-center bg-backdrop">
             {children}
           </div>
         </body>

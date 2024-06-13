@@ -9,12 +9,12 @@ function AcceptList() {
   let typeOfButton = "accept";
 
   return (
-    <div className="w-[60%] min-h-90 h-auto border-solid bg-boxColor rounded-xl p-[20px] flex flex-col gap-5 border-border_element border-[2px]">
+    <div className="w-[60%] min-h-90 h-auto bg-boxColor rounded-xl p-[20px] flex flex-col gap-5 border_element">
       <h1 className="text-base font-bold text-title h-max">
         Finding more connection to make more contact
       </h1>
       <div className="flex flex-col w-full h-auto gap-3">
-        <div className="grid grid-cols-4 auto-rows-fr gap-5 w-full min-h-[30rem] h-auto">
+        <div className="grid grid-cols-4 auto-rows-fr gap-5 w-full min-h-[] h-auto">
           {Array.from(new Array(8)).map((_, idx) => (
             <CardProfile key={idx} buttonType={typeOfButton} />
           ))}
