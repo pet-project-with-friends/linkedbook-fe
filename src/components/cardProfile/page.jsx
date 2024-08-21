@@ -26,7 +26,7 @@ function CardProfile({ buttonType }) {
           <div className="w-full flex justify-center gap-2 items-center ">
             <Button
               variant="outlined"
-              className="py-1 px-1 text-cancel_button text-sm flex items-center justify-center gap-1 border-cancel_button"
+              className="py-1 px-1 text-2 text-sm flex items-center justify-center gap-1 border-cancel_button"
             >
               <CancelIcon sx={{ color: "#eb0014", fontSize: "20px" }} />
               Refuse

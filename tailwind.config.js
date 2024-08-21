@@ -38,6 +38,7 @@ module.exports = withMT({
         border_element: "#EEEEEE",
         active_button: "#238766",
         cancel_button: "#eb0014",
+        error_txt: "#F5004F",
       },
     },
   },

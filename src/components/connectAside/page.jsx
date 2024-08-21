@@ -1,10 +1,18 @@
+"use client";
 import { Avatar, Button } from "@material-tailwind/react";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import writingImage from "@/src/Images/writing.jpg";
 import FootSidebar from "../footSidebar/page.jsx";
+import { useRouter } from "next/navigation.js";
 
-function ConnectAside() {
+function ConnectAside({ triggerScroll }) {
+  const router = useRouter();
+
+  const navigation = () => {
+    router.push("/relationship/suggestList", { scroll: false });
+  };
+
   return (
     <div className="w-[300px] h-auto flex flex-col gap-4">
       <div className="w-full min-h-40 rounded-xl bg-boxColor flex flex-col gap-3 p-[20px] border-solid border-border_element border-[2px]">
@@ -34,7 +42,10 @@ function ConnectAside() {
             </div>
           ))}
         </div>
-        <div className="flex items-center w-10/12 gap-1 py-1 px-1 rounded-sm hover:bg-blue-gray-50 cursor-pointer">
+        <div
+          className="flex items-center w-10/12 gap-1 py-1 px-1 rounded-sm hover:bg-blue-gray-50 cursor-pointer"
+          onClick={() => navigation()}
+        >
           <p className="text-sm text-click_title font-bold">
             View all recommendations
           </p>
@@ -62,6 +73,7 @@ function ConnectAside() {
             <Button
               className="border-solid border-buttonColor border-[1px] py-2 px-10 text-sm rounded-2xl text-buttonColor font-bold"
               variant="outlined"
+              onClick={() => triggerScroll()}
             >
               Finish my post
             </Button>

@@ -5,8 +5,17 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import MailIcon from "@mui/icons-material/Mail";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
+import useActions from "@/src/hooks/useAction.js";
+import { popupAction } from "@/src/redux/reducer/popupReducer.js";
 
 function SidebarProfile() {
+  const { popup } = useActions(popupAction);
+
+  // trigger the redux state and set that state to true boolean
+  const openEditProfile = () => {
+    popup(true);
+  };
+
   const iconClass = {
     color: "#9a95a7",
     fontSize: "25px",
@@ -33,6 +42,7 @@ function SidebarProfile() {
       icon: <GpsFixedIcon sx={iconClass} />,
     },
   ];
+
   return (
     <div className="w-full flex flex-col gap-2 h-max pb-[2rem]">
       {/*information of user */}
@@ -49,7 +59,7 @@ function SidebarProfile() {
             </div>
           ))}
         </div>
-        <Button size="sm" variant="filled">
+        <Button size="sm" variant="filled" onClick={() => openEditProfile()}>
           Edit Information
         </Button>
       </div>

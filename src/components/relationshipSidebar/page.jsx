@@ -1,13 +1,13 @@
 "use client";
 import friendImage from "@/src/Images/friend.jpg";
-import { Avatar, Button, Input } from "@material-tailwind/react";
+import { Avatar, Button } from "@material-tailwind/react";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import PeopleIcon from "@mui/icons-material/People";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import Link from "next/link.js";
-import { usePathname } from "next/navigation.js";
-import FootSidebar from "../footSidebar/page.jsx";
+import { usePathname, useRouter } from "next/navigation.js";
 import { useState } from "react";
+import FootSidebar from "../footSidebar/page.jsx";
 
 const themeIcon = {
   color: "#9a95a7",
@@ -22,6 +22,7 @@ const themeIconActive = {
 function SideBar() {
   const [value, setValue] = useState("");
   const pathname = usePathname();
+  const navigate = useRouter();
 
   const listChoose = [
     {
@@ -113,6 +114,7 @@ function SideBar() {
           <Button
             className="border-solid border-buttonColor border-[1px] py-2 px-10 text-sm rounded-2xl text-buttonColor font-bold"
             variant="outlined"
+            onClick={() => navigate.push("/profile/blog")}
           >
             Setup profile
           </Button>

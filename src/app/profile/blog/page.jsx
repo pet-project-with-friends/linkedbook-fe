@@ -15,7 +15,7 @@ function Page() {
   };
 
   return (
-    <div className="w-full flex gap-[1rem] ">
+    <div className="w-full flex gap-[1rem]">
       <div className="flex-[4]">
         <Sticky top={20}>
           <SidebarProfile />

@@ -39,8 +39,8 @@ function HerosProfile() {
           />
         </div>
         {/* ending background image for user */}
-        <div className="h-auto w-ful px-[5rem] flex flex-col">
-          <div className="flex h-[10rem] w-full justify-between items-center">
+        <div className="h-auto w-ful  flex flex-col">
+          <div className="flex h-[10rem] w-full justify-between items-center px-10">
             <div className="h-max gap-3 flex">
               <Avatar
                 src="https://docs.material-tailwind.com/img/face-2.jpg"

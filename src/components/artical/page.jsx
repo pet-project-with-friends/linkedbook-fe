@@ -5,7 +5,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import CommentIcon from "@mui/icons-material/Comment";
 
-function Artical() {
+function Artical({ openImage }) {
   const fakeImg = [
     {
       img: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
@@ -30,7 +30,7 @@ function Artical() {
               variant="rounded"
             />
             <div className="h-1/2 flex flex-col items-start justify-between">
-              <p className="text-base font-bold text-title">Name</p>
+              <p className="text-base font-bold text-title ">Name</p>
               <p className="text-sm text-small_text">time</p>
             </div>
           </div>
@@ -38,7 +38,7 @@ function Artical() {
         </div>
 
         <div className="w-full h-auto">
-          <p className="text-base break-words text-des_text">
+          <p className="text-base break-words text-des_text ">
             day la doan text day la doan text day la doan text day la doan text
             day la doan text day la doan text day la doan text day la doan text
             day la doan text day la doan text day la doan text day la doan text
@@ -59,6 +59,7 @@ function Artical() {
           {fakeImg.map((vl, idx) => (
             <div
               key={idx}
+              onClick={() => openImage()}
               className={`${
                 fakeImg.length >= 3 && idx === 0 && "row-start-1 row-end-3"
               } ${countImage > 3 && idx === 2 && "relative"}`}

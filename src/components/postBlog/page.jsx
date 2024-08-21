@@ -1,7 +1,9 @@
+"use client";
 import PanoramaIcon from "@mui/icons-material/Panorama";
 import { Avatar } from "@mui/material";
+import React from "react";
 
-function PostBlog({ setShowPost, setPopupType }) {
+function PostBlog({ setShowPost, setPopupType, scrollToContainer }) {
   const handlePopup = (e) => {
     setShowPost(true);
     if (e.currentTarget.id === "post") {
@@ -11,7 +13,10 @@ function PostBlog({ setShowPost, setPopupType }) {
     }
   };
   return (
-    <div className="w-full px-[20px] pt-4 pb-2 bg-boxColor rounded-xl flex flex-col gap-2 border_element ">
+    <div
+      className="w-full px-[20px] pt-4 pb-2 bg-boxColor rounded-xl flex flex-col gap-2 border_element "
+      ref={scrollToContainer}
+    >
       <div className="w-full h-10 flex items-center justify-center gap-2">
         <Avatar
           src="https://docs.material-tailwind.com/img/face-2.jpg"

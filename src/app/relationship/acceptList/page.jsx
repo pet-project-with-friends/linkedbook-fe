@@ -14,7 +14,7 @@ function AcceptList() {
         Finding more connection to make more contact
       </h1>
       <div className="flex flex-col w-full h-auto gap-3">
-        <div className="grid grid-cols-4 auto-rows-fr gap-5 w-full min-h-[] h-auto">
+        <div className="grid grid-cols-4 auto-rows-fr gap-5 w-full  h-auto">
           {Array.from(new Array(8)).map((_, idx) => (
             <CardProfile key={idx} buttonType={typeOfButton} />
           ))}

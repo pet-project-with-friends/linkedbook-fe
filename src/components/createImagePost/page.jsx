@@ -18,7 +18,6 @@ function ImagePost({ setImagePost, setImageLoaded, imageLoaded, popupType }) {
 
   // trigger file image adding
   const changeFile = (e) => {
-    console.log("running adding file image");
     if (
       !(
         e.target.files.length > 0 &&

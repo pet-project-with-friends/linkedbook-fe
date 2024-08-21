@@ -1,13 +1,8 @@
 "use client";
 
-import personImage from "@/src/Images/addImage.svg";
-import { useShallowSelectore } from "@/src/hooks/useShallowSelectore.js";
+import { UseCondition } from "@/src/hooks/useCondition.jsx";
 import { Avatar } from "@material-tailwind/react";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
 import PanoramaIcon from "@mui/icons-material/Panorama";
-import { motion } from "framer-motion";
-import Image from "next/image.js";
 import { useEffect, useRef, useState } from "react";
 import ImagePost from "../createImagePost/page.jsx";
 
@@ -15,6 +10,7 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
   const textAreaRef = useRef(null);
   const [imagePost, setImagePost] = useState([]);
   const [imageLoaded, setImageLoaded] = useState([]);
+  const [textField, setTextField] = useState("");
 
   // Check if user click to the outside of popup its will closing
   const handleClose = (e) => {
@@ -38,7 +34,7 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
 
   return (
     <>
-      {showPost ? (
+      <UseCondition isTrue={showPost}>
         <div
           onClick={(e) => handleClose(e)}
           id="container"
@@ -64,14 +60,16 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
                     <textarea
                       className="text-xl text-des_text h-auto w-full resize-none overflow-hidden p-[20px] outline-0 break-words"
                       ref={textAreaRef}
+                      value={textField}
                       placeholder="What is your writing ...."
                       onChange={(e) => {
                         resizeTextArea();
+                        setTextField(e.target.value);
                       }}
                     ></textarea>
                   </div>
                   {/*containt grid layout image by user*/}
-                  {imageLoaded.length ? (
+                  <UseCondition isTrue={imageLoaded.length}>
                     <div
                       className={`${
                         imageLoaded.length >= 3 && " grid-rows-2 "
@@ -106,7 +104,7 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
                         </div>
                       ))}
                     </div>
-                  ) : null}
+                  </UseCondition>
                 </div>
               </div>
               <div className="w-full min-h-10 flex items-center">
@@ -129,7 +127,7 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
             />
           )}
         </div>
-      ) : null}
+      </UseCondition>
     </>
   );
 }

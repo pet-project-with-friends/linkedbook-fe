@@ -4,20 +4,30 @@ import React from "react";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import PeopleIcon from "@mui/icons-material/People";
+import { useRouter } from "next/navigation.js";
 
 function ProfileAside() {
+  const router = useRouter();
+
+  const navigation = (path) => {
+    router.push(path, { scroll: false });
+  };
+
   const featureList = [
     {
       icon: <BookmarkIcon sx={{ color: "#9a95a7", fontSize: "20px" }} />,
+      path: "/save-blog/saved",
       name: "Saved items",
     },
     {
       icon: <PersonIcon sx={{ color: "#9a95a7", fontSize: "20px" }} />,
       name: "Your profile",
+      path: "/profile/blog",
     },
     {
       icon: <PeopleIcon sx={{ color: "#9a95a7", fontSize: "20px" }} />,
       name: "Friends list",
+      path: "/relationship/friendList",
     },
   ];
   return (
@@ -42,6 +52,7 @@ function ProfileAside() {
           <div
             key={idx}
             className="py-1 pl-2 w-full hover:bg-blue-gray-50 flex justify-start gap-4 cursor-pointer"
+            onClick={() => navigation(vl.path)}
           >
             {vl.icon}
             <p className="text-sm text-click_title font-bold">{vl.name}</p>
