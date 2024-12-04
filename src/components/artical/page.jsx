@@ -1,11 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar } from "@material-tailwind/react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import CommentIcon from "@mui/icons-material/Comment";
+import { CommentCore } from "../commentCore/page.jsx";
 
 function Artical({ openImage }) {
+  const [isOpenCmt, setIsOpenCmt] = useState(false);
+  // TODO: Adidng new open comment here
+  useEffect(() => {
+    console.log(isOpenCmt);
+  }, [isOpenCmt]);
+
   const fakeImg = [
     {
       img: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
@@ -20,7 +27,9 @@ function Artical({ openImage }) {
   const countImage = 13;
   return (
     <>
-      <article className="w-full h-auto p-[20px] bg-boxColor rounded-xl flex flex-col gap-3 border_element">
+      <article
+        className={`w-full h-auto p-[20px] bg-boxColor rounded-xl flex flex-col gap-3 border_element `}
+      >
         <div className="flex flex-row items-center justify-between ">
           <div className="flex flex-row items-center gap-2 h-14 ">
             <Avatar
@@ -86,11 +95,17 @@ function Artical({ openImage }) {
             <ThumbUpOffAltIcon sx={{ color: "#3f3f3f", fontSize: "25px" }} />
             <p className="text-base text-title">Like</p>
           </div>
-          <div className="py-1 px-4 flex items-center gap-2 cursor-pointer hover:bg-blue-gray-50">
+          <div
+            className="py-1 px-4 flex items-center gap-2 cursor-pointer hover:bg-blue-gray-50 select-none"
+            onClick={() => setIsOpenCmt((prev) => !prev)}
+          >
             <CommentIcon sx={{ color: "#3f3f3f", fontSize: "25px" }} />
             <p className="text-base text-title">Comment</p>
           </div>
         </div>
+
+        {/* //TODO: Making component render comment overhere */}
+        <CommentCore isOpen={isOpenCmt} />
       </article>
     </>
   );
