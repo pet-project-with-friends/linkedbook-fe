@@ -1,4 +1,4 @@
-import CreateComment from "@/src/components/create-comment/page";
+import CreateComment from "@/src/components/commentCore/components/create-comment/page";
 import { UseCondition } from "@/src/hooks/useCondition.jsx";
 import { Avatar } from "@material-tailwind/react";
 import React from "react";
@@ -6,7 +6,8 @@ import React from "react";
 export const CommentCore = ({ isOpen }) => {
   return (
     <UseCondition isTrue={isOpen}>
-      <div className="w-full h-auto min-h-[20rem] border-solid flex flex-col gap-5">
+      <div className="w-full h-auto min-h-[20rem] border-solid flex flex-col items-center gap-5">
+        <hr className="h-px my-3 bg-gray-400  border-0 dark:bg-gray-700 w-11/12"></hr>
         <CreateComment />
         <div className="w-full h-auto min-h-[5rem] p-[0.4rem] rounded-xl border-solid border-backdrop border-2 flex flex-row items-start gap-2">
           <div className="h-max w-max shrink-0">

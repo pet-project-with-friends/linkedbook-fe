@@ -19,18 +19,15 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
     }
   };
 
-  const resizeTextArea = () => {
-    if (!textAreaRef.current) {
-      return;
+  const resizeTextArea = (value) => {
+    if (textAreaRef.current) {
+      if (value?.length === 0) {
+        textAreaRef.current.style.height = "auto"; // Reset height to recalculate properly
+      }
+      textAreaRef.current.style.height = "auto"; // Reset height to recalculate properly
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; // Set height to match content
     }
-
-    textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
   };
-
-  useEffect(() => {
-    resizeTextArea();
-    window.addEventListener("resize", resizeTextArea);
-  }, []);
 
   return (
     <>
@@ -63,7 +60,7 @@ function CreatePost({ showPost, closeTrigger, type, popupType }) {
                       value={textField}
                       placeholder="What is your writing ...."
                       onChange={(e) => {
-                        resizeTextArea();
+                        resizeTextArea(e.target.value);
                         setTextField(e.target.value);
                       }}
                     ></textarea>

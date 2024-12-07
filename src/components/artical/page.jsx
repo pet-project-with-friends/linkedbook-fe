@@ -8,10 +8,6 @@ import { CommentCore } from "../commentCore/page.jsx";
 
 function Artical({ openImage }) {
   const [isOpenCmt, setIsOpenCmt] = useState(false);
-  // TODO: Adidng new open comment here
-  useEffect(() => {
-    console.log(isOpenCmt);
-  }, [isOpenCmt]);
 
   const fakeImg = [
     {
@@ -103,8 +99,6 @@ function Artical({ openImage }) {
             <p className="text-base text-title">Comment</p>
           </div>
         </div>
-
-        {/* //TODO: Making component render comment overhere */}
         <CommentCore isOpen={isOpenCmt} />
       </article>
     </>
