@@ -1,10 +1,10 @@
 "use client";
-import Artical from "@/src/components/artical/page.jsx";
-import ConnectAside from "@/src/components/connectAside/page.jsx";
 import CreatePost from "@/src/components/createPost/page.jsx";
-import PopupImage from "@/src/components/popupImage/page.jsx";
-import PostBlog from "@/src/components/postBlog/page.jsx";
-import ProfileAside from "@/src/components/profileAside/page.jsx";
+import Article from "@/src/views/pages/home-page/cards/Artical";
+import ConnectAside from "@/src/views/pages/home-page/cards/ConnectAside";
+import PostBlog from "@/src/views/pages/home-page/cards/PostBlog";
+import ProfileAside from "@/src/views/pages/home-page/cards/ProfileAside";
+import ImageDialog from "@/src/views/pages/home-page/components/ImageDialog";
 import { useEffect, useRef, useState } from "react";
 
 const fakePosts = [
@@ -84,7 +84,7 @@ function HomePage() {
           <hr className="h-px my-3 bg-gray-400  border-0 dark:bg-gray-700 w-5/6"></hr>
           {fakePosts &&
             fakePosts.map((val) => (
-              <Artical key={val.id} openImage={openImagePopup} item={val} />
+              <Article key={val.id} openImage={openImagePopup} item={val} />
             ))}
         </div>
         <ConnectAside triggerScroll={scrollToPostElement} />
@@ -95,7 +95,7 @@ function HomePage() {
         closeTrigger={closePopup}
         popupType={setPopupType}
       />
-      <PopupImage isOpen={popupImage} isClose={closingPoupImage} />
+      <ImageDialog isOpen={popupImage} isClose={closingPoupImage} />
     </>
   );
 }

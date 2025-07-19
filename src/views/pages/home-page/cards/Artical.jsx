@@ -11,12 +11,12 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useState } from "react";
-import { CommentCore } from "../commentCore/page.jsx";
 import ReportIcon from "@mui/icons-material/Report";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { CommentCore } from "@/src/components/commentCore/page";
 
-function Artical({ openImage, item }) {
+function Article({ openImage, item }) {
   const [isOpenCmt, setIsOpenCmt] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -214,4 +214,4 @@ function Artical({ openImage, item }) {
   );
 }
 
-export default Artical;
+export default Article;
