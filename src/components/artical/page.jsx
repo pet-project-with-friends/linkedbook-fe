@@ -5,22 +5,24 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import CommentIcon from "@mui/icons-material/Comment";
 import { CommentCore } from "../commentCore/page.jsx";
+import { UseCondition } from "@/src/hooks/useCondition.jsx";
 
-function Artical({ openImage }) {
+function Artical({ openImage, item }) {
   const [isOpenCmt, setIsOpenCmt] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(null);
 
-  const fakeImg = [
-    {
-      img: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    },
-  ];
-  const countImage = 13;
+  console.log(item.images.length);
+
+  // ** Handler
+  const horizonClick = (val) => {
+    setPopupOpen(val.id);
+  };
+
+  const closeHorizon = () => {
+    setPopupOpen(null);
+  };
+
+  const countImage = item.images.length;
   return (
     <>
       <article
@@ -39,7 +41,11 @@ function Artical({ openImage }) {
               <p className="text-sm text-small_text">time</p>
             </div>
           </div>
-          <MoreHorizIcon className="cursor-pointer" />
+          {/* TODO: Adding onlick here for showing popup */}
+          <MoreHorizIcon
+            className="cursor-pointer"
+            onClick={() => horizonClick(item)}
+          />
         </div>
 
         <div className="w-full h-auto">
@@ -57,28 +63,28 @@ function Artical({ openImage }) {
 
         {/* check if image array is 2 or 3 image its will be grid layout, if only 1 image its just showing normal layout */}
         <div
-          className={`${fakeImg.length >= 3 && " grid-rows-2 "} ${
-            fakeImg.length !== 1 && "grid grid-cols-2 gap-2"
+          className={`${item.images.length >= 3 && " grid-rows-2 "} ${
+            item.images.length !== 1 && "grid grid-cols-2 gap-2"
           } w-full min-h-10 rounded-xl`}
         >
-          {fakeImg.map((vl, idx) => (
+          {item.images.slice(0, 3).map((val, idx) => (
             <div
               key={idx}
               onClick={() => openImage()}
               className={`${
-                fakeImg.length >= 3 && idx === 0 && "row-start-1 row-end-3"
+                item.images.length >= 3 && idx === 0 && "row-start-1 row-end-3"
               } ${countImage > 3 && idx === 2 && "relative"}`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={vl.img}
+                src={val.img}
                 alt="no thing"
                 className="w-full h-full object-cover"
               />
               {countImage > 3 && idx === 2 && (
                 <div className="absolute bg-black bg-opacity-60 top-0 left-0 w-full h-full flex items-center justify-center cursor-pointer">
                   <p className="text-gray-50 font-bold text-3xl">
-                    {countImage - fakeImg.length}
+                    {countImage - 3}
                   </p>
                 </div>
               )}
@@ -101,6 +107,17 @@ function Artical({ openImage }) {
         </div>
         <CommentCore isOpen={isOpenCmt} />
       </article>
+      <UseCondition isTrue={popupOpen === item.id}>
+        <div
+          onClick={() => closeHorizon()}
+          id="container"
+          className="fixed pt-5  inset-0 z-40 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center "
+        >
+          <div className="p-[20px] min-h-[22rem] max-h-[40rem] w-[727px] bg-boxColor rounded-xl flex flex-col justify-start gap-2">
+            hi this is my popup
+          </div>
+        </div>
+      </UseCondition>
     </>
   );
 }
