@@ -151,7 +151,7 @@ function Article({ openImage, item }) {
           </>
         </div>
 
-        <div className="w-full h-auto">
+        <div className="w-full h-auto ">
           <p className="text-base break-words text-des_text ">
             day la doan text day la doan text day la doan text day la doan text
             day la doan text day la doan text day la doan text day la doan text
@@ -166,17 +166,19 @@ function Article({ openImage, item }) {
 
         {/* check if image array is 2 or 3 image its will be grid layout, if only 1 image its just showing normal layout */}
         <div
-          className={`${item?.images.length >= 3 && " grid-rows-2 "} ${
-            item?.images.length !== 1 && "grid grid-cols-2 gap-2"
-          } w-full min-h-10 rounded-xl`}
+          className={`${countImage >= 3 && " grid-rows-2 "} ${
+            countImage !== 1 && "grid grid-cols-2 gap-2 grid-rows-2"
+          } w-full h-80 rounded-xl`}
         >
           {item?.images.slice(0, 3).map((val, idx) => (
             <div
               key={idx}
-              onClick={() => openImage()}
+              onClick={openImage}
               className={`${
-                item.images.length >= 3 && idx === 0 && "row-start-1 row-end-3"
-              } ${countImage > 3 && idx === 2 && "relative"}`}
+                countImage >= 3 && idx === 0 && "row-start-1 row-end-3"
+              } ${countImage > 3 && idx === 2 && "relative"} ${
+                countImage < 3 && "row-start-1 row-end-3"
+              }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

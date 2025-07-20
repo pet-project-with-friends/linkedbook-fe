@@ -31,7 +31,10 @@ const fakePosts = [
     },
     time: "10 minutes ago",
     text: "Một bài viết khác có ít hình ảnh hơn.",
-    images: [{ img: "https://picsum.photos/200/300?random=5" }],
+    images: [
+      { img: "https://picsum.photos/200/300?random=1" },
+      { img: "https://picsum.photos/200/300?random=2" },
+    ],
   },
 ];
 
@@ -54,6 +57,7 @@ function HomePage() {
   // this is using for controlling the image popup of image
   const openImagePopup = () => {
     setPopupImage(true);
+    console.log("calling to open popup");
   };
 
   // this is using for closing the popup image of blog
