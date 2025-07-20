@@ -2,8 +2,8 @@
 import { store } from "@/src/redux/store.js";
 import { Roboto } from "next/font/google";
 import { Provider } from "react-redux";
-import Header from "../components/header/page.jsx";
 import "./globals.css";
+import Header from "../@core/component/Header";
 
 const roboto = Roboto({
   weight: "400",

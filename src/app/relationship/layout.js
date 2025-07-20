@@ -1,4 +1,4 @@
-import SideBar from "@/src/components/relationshipSidebar/page.jsx";
+import SideBar from "@/src/views/pages/relationship/cards/SideBar";
 
 export default function SidebarLayout({
   children, // will be a page or nested layout

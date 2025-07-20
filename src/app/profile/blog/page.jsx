@@ -1,8 +1,9 @@
 "use client";
-import Artical from "@/src/components/artical/page.jsx";
-import CreatePost from "@/src/components/createPost/page.jsx";
-import PostBlog from "@/src/components/postBlog/page.jsx";
-import SidebarProfile from "@/src/components/sidebarProfile/page.jsx";
+
+import Article from "@/src/@core/component/Ariticle";
+import CreatePost from "@/src/@core/component/CreatePost";
+import PostBlog from "@/src/views/pages/profile/blog/card/PostBlog";
+import SidebarProfile from "@/src/views/pages/profile/blog/card/SidebarProfile";
 import { useState } from "react";
 import Sticky from "react-stickynode";
 
@@ -24,7 +25,7 @@ function Page() {
       <div className="flex-[6] flex flex-col gap-5">
         <PostBlog setShowPost={setShowPost} setPopupType={setPopupType} />
         {Array.from(new Array(5)).map((_, idx) => (
-          <Artical key={idx} />
+          <Article key={idx} />
         ))}
       </div>
       {/* popup */}

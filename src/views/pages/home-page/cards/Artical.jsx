@@ -14,7 +14,7 @@ import { useState } from "react";
 import ReportIcon from "@mui/icons-material/Report";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { CommentCore } from "@/src/components/commentCore/page";
+import { CommentCore } from "../components/CommentCore";
 
 function Article({ openImage, item }) {
   const [isOpenCmt, setIsOpenCmt] = useState(false);

@@ -1,5 +1,4 @@
-import MyBlogCard from "@/src/components/myblogCard/page.jsx";
-import SavedBlogCard from "@/src/components/savedBlogCard/page.jsx";
+import MyBlogCard from "@/src/views/pages/save-blog/cards/MyBlogCard";
 import { Pagination } from "@mui/material";
 
 const page = () => {

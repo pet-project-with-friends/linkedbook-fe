@@ -1,5 +1,5 @@
 "use client";
-import InputField from "@/src/components/inputField/page.jsx";
+import InputField from "@/src/views/pages/auth/register-login/components/InputField";
 import Link from "next/link.js";
 import { useState } from "react";
 

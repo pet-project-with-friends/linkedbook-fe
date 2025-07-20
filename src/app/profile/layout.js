@@ -1,7 +1,7 @@
 "use client";
-import HerosProfile from "@/src/components/herosProfile/page.jsx";
-import EditInforPopup from "@/src/components/popupInfomation/page.jsx";
 import { useShallowSelectore } from "@/src/hooks/useShallowSelectore.js";
+import HerosProfile from "@/src/views/pages/profile/blog/card/HerosProfile";
+import EditInforPopup from "@/src/views/pages/profile/blog/dialogs/EditInforDialog";
 import { useEffect } from "react";
 
 export default function ProfileLayout({ children }) {

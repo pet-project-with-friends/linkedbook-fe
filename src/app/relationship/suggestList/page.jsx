@@ -1,6 +1,5 @@
-import CardProfile from "@/src/components/cardProfile/page.jsx";
+import CardProfile from "@/src/views/pages/relationship/cards/CardProfile";
 import { Pagination } from "@mui/material";
-import SidebarLayout from "../layout.js";
 
 export default function page() {
   let typeButton = "suggess";

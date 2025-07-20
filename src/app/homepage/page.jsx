@@ -1,5 +1,5 @@
 "use client";
-import CreatePost from "@/src/components/createPost/page.jsx";
+import CreatePost from "@/src/@core/component/CreatePost";
 import Article from "@/src/views/pages/home-page/cards/Artical";
 import ConnectAside from "@/src/views/pages/home-page/cards/ConnectAside";
 import PostBlog from "@/src/views/pages/home-page/cards/PostBlog";

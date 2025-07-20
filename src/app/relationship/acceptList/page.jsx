@@ -1,8 +1,7 @@
 "use client";
-import CardProfile from "@/src/components/cardProfile/page.jsx";
+import CardProfile from "@/src/views/pages/relationship/cards/CardProfile";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
-import SidebarLayout from "../layout.js";
 
 function AcceptList() {
   const [value, setValue] = useState("");

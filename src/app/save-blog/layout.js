@@ -1,4 +1,4 @@
-import SavedSideBar from "@/src/components/savedSidebar/page.jsx";
+import SavedSideBar from "@/src/views/pages/save-blog/cards/SavedSidebar";
 
 const layout = ({ children }) => {
   return (

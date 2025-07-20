@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import writingImage from "@/src/Images/writing.jpg";
 import { useRouter } from "next/navigation.js";
-import FootSidebar from "@/src/components/footSidebar/page";
+import FootSidebar from "@/src/@core/component/FootSidebar";
 
 function ConnectAside({ triggerScroll }) {
   const router = useRouter();
