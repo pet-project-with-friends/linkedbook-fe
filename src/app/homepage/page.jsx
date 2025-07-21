@@ -61,7 +61,7 @@ function HomePage() {
   };
 
   // this is using for closing the popup image of blog
-  const closingPoupImage = () => {
+  const closingPopupImage = () => {
     setPopupImage(false);
   };
 
@@ -99,7 +99,7 @@ function HomePage() {
         closeTrigger={closePopup}
         popupType={setPopupType}
       />
-      <ImageDialog isOpen={popupImage} isClose={closingPoupImage} />
+      <ImageDialog isOpen={popupImage} isClose={closingPopupImage} />
     </>
   );
 }

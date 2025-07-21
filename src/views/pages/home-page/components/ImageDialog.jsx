@@ -1,87 +1,169 @@
 "use client";
-import { UseCondition } from "@/src/hooks/useCondition.jsx";
+import React, { useMemo, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import React, { useEffect } from "react";
-import Masonry from "react-masonry-css";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  useMediaQuery,
+  Slide,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-const ImageDialog = ({ isOpen, isClose, images = [] }) => {
-  const fakeImage = [
-    "https://picsum.photos/200/300?random=1",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=1",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=1",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=2",
-  ];
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") isClose();
-    };
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+const fakeImage = [
+  "https://picsum.photos/400/600?random=1",
+  "https://picsum.photos/400/600?random=2",
+  "https://picsum.photos/400/600?random=3",
+  "https://picsum.photos/400/600?random=4",
+  "https://picsum.photos/400/600?random=5",
+  "https://picsum.photos/400/600?random=6",
+  "https://picsum.photos/400/600?random=7",
+  "https://picsum.photos/400/600?random=8",
+  "https://picsum.photos/400/600?random=9",
+  "https://picsum.photos/400/600?random=10",
+];
+
+const ImageArtGrid = ({ isOpen, isClose }) => {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Image preview dialog state
+  const [previewImage, setPreviewImage] = useState(null);
+
+  // **Hook
+  const layout = useMemo(() => {
+    return fakeImage.map(() => {
+      const colSpan = [1, 2][Math.floor(Math.random() * 2)];
+      const rowSpan = [1, 2][Math.floor(Math.random() * 2)];
+      return { colSpan, rowSpan };
+    });
   }, []);
 
-  // Define responsive breakpoints
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1,
-  };
-
   return (
-    <UseCondition isTrue={isOpen}>
-      <div
-        onClick={(e) => {
-          if (e.target.id === "container") isClose();
+    <>
+      {/* Gallery Dialog */}
+      <Dialog
+        open={isOpen}
+        onClose={isClose}
+        fullScreen={fullScreen}
+        maxWidth="lg"
+        PaperProps={{
+          style: {
+            borderRadius: 20,
+            background: "white",
+            boxShadow: "0 12px 32px rgba(0, 0, 0, 0.15)",
+            maxHeight: "85vh",
+            minHeight: "60vh",
+          },
         }}
-        id="container"
-        className="fixed inset-0 z-50 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center p-4"
+        BackdropProps={{
+          style: {
+            backgroundColor: "rgba(0,0,0,0.3)",
+          },
+        }}
+        TransitionComponent={Slide}
       >
-        <div className="relative w-full max-w-7xl max-h-[90vh] bg-white rounded-xl overflow-auto p-6">
-          {/* Close Button */}
-          <button
-            onClick={isClose}
-            className="absolute top-4 right-4 text-gray-600 hover:text-red-500 z-50"
-          >
-            <CloseIcon fontSize="large" />
-          </button>
+        {/* Header */}
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "12px 20px",
+            fontWeight: 600,
+            fontSize: "18px",
+            color: "#333",
+          }}
+        >
+          Art-Inspired Gallery
+          <IconButton onClick={isClose}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
 
-          <h2 className="text-xl font-semibold text-center mb-4">
-            Image Gallery
-          </h2>
+        {/* Image Grid */}
+        <DialogContent
+          dividers
+          sx={{
+            p: 2,
+            overflowY: "auto",
+          }}
+        >
+          <div className="grid grid-cols-3 gap-3 auto-rows-[130px]">
+            {fakeImage.map((src, index) => {
+              const { colSpan, rowSpan } = layout[index];
+              const colSpanClass = colSpan === 2 ? "col-span-2" : "col-span-1";
+              const rowSpanClass = rowSpan === 2 ? "row-span-2" : "row-span-1";
+              return (
+                <div
+                  key={index}
+                  className={`relative ${colSpanClass} ${rowSpanClass} overflow-hidden rounded-xl shadow hover:shadow-md transition`}
+                >
+                  <img
+                    src={src}
+                    alt={`img-${index}`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </DialogContent>
+      </Dialog>
 
-          {/* Masonry Layout */}
-          <Masonry
-            breakpointCols={breakpointColumnsObj}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column"
-          >
-            {fakeImage?.map((src, index) => (
-              <div key={index} className="mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element*/}
-                <img
-                  src={src}
-                  alt={`image-${index}`}
-                  className="w-full h-auto rounded-lg object-contain"
-                />
-              </div>
-            ))}
-          </Masonry>
-        </div>
-      </div>
-    </UseCondition>
+      {/* Image Preview Dialog */}
+      <Dialog
+        open={!!previewImage}
+        onClose={() => setPreviewImage(null)}
+        maxWidth="md"
+        PaperProps={{
+          style: {
+            borderRadius: 16,
+            background: "rgba(255,255,255,0.9)",
+            backdropFilter: "blur(8px)",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+          },
+        }}
+        BackdropProps={{
+          style: {
+            backgroundColor: "rgba(0,0,0,0.6)",
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            p: 1,
+          }}
+        >
+          <IconButton onClick={() => setPreviewImage(null)}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            p: 2,
+          }}
+        >
+          <img
+            src={previewImage}
+            alt="Full"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "80vh",
+              borderRadius: 12,
+              objectFit: "contain",
+            }}
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
-export default ImageDialog;
+export default ImageArtGrid;

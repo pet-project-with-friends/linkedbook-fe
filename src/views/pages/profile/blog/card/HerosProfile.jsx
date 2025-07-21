@@ -57,7 +57,7 @@ function HerosProfile() {
               className="text-base font-semibold bg-blue-gray-50 text-title flex items-center gap-2"
             >
               <EditIcon />
-              edit your profile
+              edit your avatar
             </Button>
           </div>
           <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700"></hr>
