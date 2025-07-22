@@ -1,12 +1,15 @@
 "use client";
+import useActions from "@/src/hooks/useAction";
 import { useShallowSelectore } from "@/src/hooks/useShallowSelectore.js";
+import { popupAction } from "@/src/redux/reducer/popupReducer";
 import HerosProfile from "@/src/views/pages/profile/blog/card/HerosProfile";
-import EditInforPopup from "@/src/views/pages/profile/blog/dialogs/EditInforDialog";
+import UserInfoDialog from "@/src/views/pages/profile/blog/dialogs/EditInforDialog";
 import { useEffect } from "react";
 
 export default function ProfileLayout({ children }) {
   // access to the redux store, get the state and using value of that state
   const { isOpen } = useShallowSelectore((state) => state.popup);
+  const { popup } = useActions(popupAction);
 
   // cancel the scroll if modal is open
   // I wonder that we can use it into the redux ?
@@ -18,6 +21,10 @@ export default function ProfileLayout({ children }) {
     }
   }, [isOpen]);
 
+  const setCloseEdit = () =>{
+    popup(false)
+  }
+
   return (
     <>
       <section className="w-full h-max flex flex-col items-center gap-5 ">
@@ -26,7 +33,7 @@ export default function ProfileLayout({ children }) {
           {children}
         </div>
       </section>
-      <EditInforPopup open={isOpen} />
+      <UserInfoDialog open={isOpen} onClose={setCloseEdit}/>
     </>
   );
 }

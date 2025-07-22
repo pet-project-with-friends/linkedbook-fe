@@ -31,6 +31,13 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
   // Image preview dialog state
   const [previewImage, setPreviewImage] = useState(null);
 
+  const handleClose = () => {
+    setPreviewImage(null);
+  };
+
+  const handleOpenPreview = (urlImage) => {
+    setPreviewImage(urlImage);
+  };
   // **Hook
   const layout = useMemo(() => {
     return fakeImage.map(() => {
@@ -98,6 +105,7 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
               return (
                 <div
                   key={index}
+                  onClick={() => handleOpenPreview(src)}
                   className={`relative ${colSpanClass} ${rowSpanClass} overflow-hidden rounded-xl shadow hover:shadow-md transition`}
                 >
                   <img
@@ -114,50 +122,52 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
 
       {/* Image Preview Dialog */}
       <Dialog
-        open={!!previewImage}
-        onClose={() => setPreviewImage(null)}
-        maxWidth="md"
+        open={Boolean(previewImage)}
+        onClose={handleClose}
+        fullScreen
         PaperProps={{
           style: {
-            borderRadius: 16,
-            background: "rgba(255,255,255,0.9)",
-            backdropFilter: "blur(8px)",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
-          },
-        }}
-        BackdropProps={{
-          style: {
-            backgroundColor: "rgba(0,0,0,0.6)",
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           },
         }}
       >
-        <DialogTitle
+        <IconButton
+          onClick={handleClose}
           sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            p: 1,
+            position: "absolute",
+            top: 16,
+            right: 16,
+            color: "#fff",
+            zIndex: 10,
           }}
         >
-          <IconButton onClick={() => setPreviewImage(null)}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
+          <CloseIcon />
+        </IconButton>
+
         <DialogContent
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            height: "100%",
+            width: "100%",
+            overflow: "auto",
             p: 2,
           }}
         >
           <img
             src={previewImage}
-            alt="Full"
+            alt="Preview"
             style={{
-              maxWidth: "100%",
-              maxHeight: "80vh",
-              borderRadius: 12,
+              width: "auto",
+              height: "auto",
+              maxWidth: "none",
+              maxHeight: "none",
               objectFit: "contain",
+              borderRadius: 8,
             }}
           />
         </DialogContent>

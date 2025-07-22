@@ -1,212 +1,113 @@
-"use client";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button,
+  Typography,
+  Box,
+  IconButton,
+  Avatar,
+  Grid,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import React from "react";
 
-import useActions from "@/src/hooks/useAction.js";
-import { UseCondition } from "@/src/hooks/useCondition.jsx";
-import { popupAction } from "@/src/redux/reducer/popupReducer.js";
-import { isValidName, isVietnamesePhoneNumber } from "@/src/utils/index.js";
-import { Button } from "@material-tailwind/react";
-import { useState } from "react";
-
-const EditInforPopup = ({ open }) => {
-  const { popup } = useActions(popupAction);
-  const [inputField, setInputField] = useState({
-    fullName: "",
-    gender: "",
-    email: "",
-    phoneNumber: "",
-    location: "",
-    currentLocation: "",
-  });
-
-  // handle Error
-  const [errorField, seterrorField] = useState({
-    fullName: "",
-    gender: "",
-    email: "",
-    phoneNumber: "",
-    location: "",
-    currentLocation: "",
-  });
-
-  const listInput = [
-    {
-      name: "fullName",
-      value: inputField.fullName,
-      isReading: false,
-    },
-    {
-      name: "gender",
-      value: inputField.gender,
-      isReading: false,
-    },
-    {
-      name: "phoneNumber",
-      value: inputField.phoneNumber,
-      isReading: false,
-    },
-    {
-      name: "email",
-      value: inputField.email,
-      isReading: true,
-      required: true,
-    },
-    {
-      name: "location",
-      value: inputField.location,
-      isReading: false,
-    },
-    {
-      name: "currentLocation",
-      value: inputField.currentLocation,
-      isReading: false,
-    },
-  ];
-
-  //validation input func
-  const validationFullName = (val) => {
-    if (!isValidName(val)) {
-      return "Name must contain 3-30 character without special character";
-    }
-    return "";
-  };
-
-  const validationEmail = (val) => {
-    if (!isEmailValid(val)) {
-      return "Email is not valid";
-    }
-    return "";
-  };
-
-  const validationPhoneNumber = (val) => {
-    if (!isVietnamesePhoneNumber(val)) {
-      return "Number phone is not correct";
-    }
-  };
-
-  const validationLoaction = (val) => {
-    if (val.length < 3 || val.length > 200) {
-      return "Location must contain 3-200 characters";
-    }
-    return "";
-  };
-
-  const validationGender = (val) => {
-    if (val.length < 3 || val.length > 50) {
-      return "Gender must contain 3-50 characters";
-    }
-    return "";
-  };
-  // ending validation input func
-
-  //   check all field in one time and then showing to the screen
-  //   can we do something to optimism this code
-  const validationAllField = (index, val) => {
-    if (index === "fullName") {
-      seterrorField((prv) => ({ ...prv, fullName: validationFullName(val) }));
-    }
-    if (index === "gender") {
-      seterrorField((prv) => ({ ...prv, gender: validationGender(val) }));
-    }
-    if (index === "email") {
-      seterrorField((prv) => ({ ...prv, email: validationEmail(val) }));
-    }
-    if (index === "phoneNumber") {
-      seterrorField((prv) => ({
-        ...prv,
-        phoneNumber: validationPhoneNumber(val),
-      }));
-    }
-    if (index === "location") {
-      seterrorField((prv) => ({ ...prv, location: validationLoaction(val) }));
-    }
-    if (index === "currentLocation") {
-      seterrorField((prv) => ({
-        ...prv,
-        currentLocation: validationLoaction(val),
-      }));
-    }
-  };
-
-  //  onchange txt while input
-  const changeTxt = (e) => {
-    const { name, value } = e.target;
-    setInputField((prv) => ({ ...prv, [name]: value }));
-    validationAllField(name, value);
-  };
-
-  // cheking if user click on right place
-  const closePopup = (e) => {
-    if (e.target.id === "container") {
-      popup(false);
-    }
-    return;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    for (let index in errorField) {
-      return errorField[index];
-    }
-    console.log("no error");
-    popup(false);
-  };
-
+export default function ImageDialog({ open, onClose, previewImage }) {
   return (
-    <>
-      <UseCondition isTrue={open}>
-        <div
-          onClick={(e) => closePopup(e)}
-          id="container"
-          className="fixed pt-5 inset-0 z-40 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center "
-        >
-          <div className="p-[20px] min-h-[10rem] h-max w-[727px] bg-boxColor rounded-xl flex flex-col justify-start gap-2">
-            <form
-              onSubmit={handleSubmit}
-              className="w-full h-max flex flex-col gap-3"
-            >
-              {listInput.map((val, idx) => (
-                <div
-                  key={idx}
-                  className="w-full flex flex-col gap-1 items-start"
-                >
-                  <p className="font-bold text-base text-title">{val.name}</p>
-                  <div className="w-full h-[2rem] rounded-md border_element">
-                    <input
-                      type="text"
-                      value={val.value}
-                      name={val.name}
-                      readOnly={val.isReading}
-                      className="w-full h-full rounded-md outline-none border-none pl-[0.5rem] text-sm text-title"
-                      onChange={(e) => changeTxt(e)}
-                    />
-                  </div>
-                  {errorField[val.name] !== "" && (
-                    <span className="text-error_txt text-sm">
-                      {errorField[val.name]}
-                    </span>
-                  )}
-                </div>
-              ))}
-              <div className=" flex justify-end w-full gap-5">
-                <Button
-                  variant="outlined"
-                  className=" border-none py-2 px-3  text-sm font-bold flex items-center justify-center gap-2 bg-cancel_button text-white"
-                >
-                  CANCEL
-                </Button>
-                <Button
-                  variant="outlined"
-                  className=" border-none py-2 px-3  text-sm font-bold flex items-center justify-center gap-2 bg-active_button text-white"
-                >
-                  SAVE
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </UseCondition>
-    </>
-  );
-};
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="md"
+      PaperProps={{
+        sx: {
+          borderRadius: 4,
+          p: 2,
+        },
+      }}
+    >
+      <DialogTitle
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h6">Profile Preview</Typography>
+        <IconButton onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
 
-export default EditInforPopup;
+      <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        {/* Avatar + Image Banner */}
+        <Box
+          sx={{
+            width: "100%",
+            height: 180,
+            background: "linear-gradient(135deg, #fc466b, #3f5efb)",
+            position: "relative",
+            borderRadius: 2,
+          }}
+        >
+          <Avatar
+            src={previewImage}
+            sx={{
+              width: 96,
+              height: 96,
+              position: "absolute",
+              bottom: -48,
+              left: "50%",
+              transform: "translateX(-50%)",
+              border: "4px solid white",
+            }}
+          />
+        </Box>
+
+        <Box mt={6}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField fullWidth label="First name" variant="outlined" />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField fullWidth label="Last name" variant="outlined" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Email"
+                type="email"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Phone (optional)"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField fullWidth label="Organization" variant="outlined" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField fullWidth label="Department" variant="outlined" />
+            </Grid>
+          </Grid>
+        </Box>
+      </DialogContent>
+
+      <DialogActions>
+        <Button onClick={onClose} variant="outlined">
+          Cancel
+        </Button>
+        <Button variant="contained">Save</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
