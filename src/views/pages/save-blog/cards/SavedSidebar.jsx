@@ -51,37 +51,31 @@ const SavedSideBar = () => {
     },
   ];
   return (
-    <div className="w-[20rem]">
+    <div className="w-[20rem] flex-1">
       <div className="sticky top-5 flex flex-col gap-4">
         <div className=" h-max w-full flex flex-col gap-2 bg-boxColor rounded-xl pb-[20px] border-solid border-border_element border-[2px]">
           <h1 className="text-base font-bold text-title w-full p-[20px_20px_0_20px]">
             Manage blog saved
           </h1>
-          {/* searchin box */}
-          <div className="w-full flex items-center gap-1 h-[4rem] p-[0_10px_20px_10px] border-solid border-gray-200 border-b-[1px]">
-            <div className="rounded-md h-full flex-[8] bg-[#edf3f8] flex items-center gap-1 px-1">
-              <SearchIcon />
+          {/* searching box */}
+          <div className="w-full px-5 pb-5 border-b border-gray-200">
+            <div className="flex items-center gap-2 bg-[#edf3f8] rounded-lg px-3 py-2">
+              <SearchIcon sx={{ color: "#6B7280", fontSize: 20 }} />
               <input
-                className="focus:outline-none focus:shadow-outline h-full text-base"
-                style={{
-                  background: "none",
-                }}
                 type="text"
-                placeholder="Find blog"
+                placeholder="Search blog..."
                 value={searching}
                 onChange={(e) => setSearching(e.target.value)}
+                className="flex-1 bg-transparent text-sm text-gray-700 focus:outline-none"
               />
+              <Button
+                variant="outlined"
+                size="sm"
+                className="!border-buttonColor text-buttonColor text-xs font-semibold px-3 py-1 rounded-md"
+              >
+                FIND
+              </Button>
             </div>
-            <Button
-              className="h-full flex-[1] border-solid border-buttonColor border-[1px]  text-sm rounded-md text-buttonColor font-bold flex items-center justify-center"
-              variant="outlined"
-              style={{
-                overflow: "unset",
-                position: "unset",
-              }}
-            >
-              FIND
-            </Button>
           </div>
           {/* ending searching box */}
 

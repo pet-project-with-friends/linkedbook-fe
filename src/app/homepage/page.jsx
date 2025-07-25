@@ -57,7 +57,6 @@ function HomePage() {
   // this is using for controlling the image popup of image
   const openImagePopup = () => {
     setPopupImage(true);
-    console.log("calling to open popup");
   };
 
   // this is using for closing the popup image of blog

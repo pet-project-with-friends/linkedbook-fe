@@ -22,8 +22,6 @@ function Article({ openImage, item }) {
 
   // ** Handler
   const horizonClick = (_, event) => {
-    console.log(event.currentTarget);
-
     setAnchorEl(event.currentTarget);
   };
   const closeHorizon = () => {

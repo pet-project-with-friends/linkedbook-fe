@@ -1,21 +1,17 @@
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Button,
-  Typography,
-  Box,
-  IconButton,
-  Avatar,
-  Grid,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import React from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 export default function ImageDialog({ open, onClose, previewImage }) {
   return (
@@ -93,10 +89,14 @@ export default function ImageDialog({ open, onClose, previewImage }) {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth label="Organization" variant="outlined" />
+              <TextField fullWidth label="Location" variant="outlined" />
             </Grid>
             <Grid item xs={12}>
-              <TextField fullWidth label="Department" variant="outlined" />
+              <TextField
+                fullWidth
+                label="Current location"
+                variant="outlined"
+              />
             </Grid>
           </Grid>
         </Box>

@@ -83,7 +83,7 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
             color: "#333",
           }}
         >
-          Art-Inspired Gallery
+          UserName's post
           <IconButton onClick={isClose}>
             <CloseIcon />
           </IconButton>

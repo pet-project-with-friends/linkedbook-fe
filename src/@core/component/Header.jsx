@@ -1,11 +1,12 @@
 "use client";
+
 import logoImage from "@/src/Images/linkedinLogo.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PeopleIcon from "@mui/icons-material/People";
 import SearchIcon from "@mui/icons-material/Search";
-import { Tab, Tabs, Typography } from "@mui/material";
-import { useRouter } from "next/navigation.js";
+import { Box, InputBase, Tab, Tabs } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function Header() {
@@ -20,99 +21,92 @@ function Header() {
 
   const tabList = [
     {
-      name: (
-        <Typography
-          sx={{
-            fontSize: "10px",
-            fontWeight: "bold",
-          }}
-        >
-          Homepage
-        </Typography>
-      ),
+      name: "Homepage",
       icon: <HomeIcon />,
       path: "/homepage",
     },
     {
-      name: (
-        <Typography
-          sx={{
-            fontSize: "10px",
-            fontWeight: "bold",
-          }}
-        >
-          Connection
-        </Typography>
-      ),
+      name: "Connection",
       icon: <PeopleIcon />,
       path: "/relationship/acceptList",
     },
     {
-      name: (
-        <Typography
-          sx={{
-            fontSize: "10px",
-            fontWeight: "bold",
-          }}
-        >
-          Notifications
-        </Typography>
-      ),
+      name: "Notifications",
       icon: <NotificationsIcon />,
       path: "/profile/blog",
     },
   ];
+
   return (
-    <header className="w-full h-[4rem] bg-boxColor border_element flex justify-center">
-      <div className="w-[80rem] h-full flex items-center justify-between">
-        {/* searching */}
-        <div className="h-[50%] flex items-center gap-2">
-          <div className="h-full w-[2rem]">
-            {/* eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element */}
-            <img
-              src={logoImage.src}
-              alt="logo"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="rounded-md h-full min-w-[15rem] bg-[#edf3f8] flex items-center gap-1 px-1">
-            <SearchIcon />
-            <input
-              className="focus:outline-none focus:shadow-outline h-full text-base"
-              style={{
-                background: "none",
-              }}
-              type="text"
-              placeholder="Searching"
+    <header className="w-full h-16 shadow-sm bg-white border-b border-gray-200 flex justify-center">
+      <div className="w-full max-w-[80rem] px-2 flex items-center justify-between">
+        {/* Left - Logo & Search */}
+        <div className="flex items-center gap-4">
+          <img
+            src={logoImage.src}
+            alt="logo"
+            className="h-10 w-10 rounded-md object-cover"
+          />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "#edf3f8",
+              borderRadius: 2,
+              px: 1.5,
+              py: 0.5,
+              minWidth: "240px",
+            }}
+          >
+            <SearchIcon sx={{ fontSize: 20, color: "gray" }} />
+            <InputBase
+              placeholder="Search"
               value={searching}
               onChange={(e) => setSearching(e.target.value)}
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontSize: 14,
+              }}
             />
-          </div>
+          </Box>
         </div>
-        {/* ending searching */}
 
-        {/* tab ui */}
-        <div className="h-full flex ">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            sx={{
-              "& .MuiTabs-indicator": {
-                backgroundColor: "#3f3f3f",
-                height: "2px",
+        {/* Right - Tabs */}
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          sx={{
+            "& .MuiTabs-indicator": {
+              backgroundColor: "#0a66c2", // LinkedIn blue
+              height: 3,
+              borderRadius: 2,
+            },
+            "& .MuiTab-root": {
+              minWidth: 100,
+              textTransform: "none",
+              fontWeight: 500,
+              fontSize: 13,
+              color: "gray",
+              "&:hover": {
+                color: "#0a66c2",
               },
-              "& .MuiTab-root.Mui-selected": {
-                color: "#3f3f3f",
-              },
-            }}
-            aria-label="icon label tabs example"
-          >
-            {tabList.map((vl, idx) => (
-              <Tab key={idx} icon={vl.icon} label={vl.name} value={vl.path} />
-            ))}
-          </Tabs>
-        </div>
-        {/* end tab ui */}
+            },
+            "& .Mui-selected": {
+              color: "#0a66c2",
+            },
+          }}
+        >
+          {tabList.map((item) => (
+            <Tab
+              key={item.path}
+              icon={item.icon}
+              label={item.name}
+              value={item.path}
+              iconPosition="top"
+            />
+          ))}
+        </Tabs>
       </div>
     </header>
   );

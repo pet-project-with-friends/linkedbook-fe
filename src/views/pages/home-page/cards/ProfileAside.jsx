@@ -4,62 +4,69 @@ import React from "react";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import PeopleIcon from "@mui/icons-material/People";
-import { useRouter } from "next/navigation.js";
+import { useRouter } from "next/navigation";
 
 function ProfileAside() {
   const router = useRouter();
 
-  const navigation = (path) => {
+  const navigate = (path) => {
     router.push(path, { scroll: false });
   };
 
   const featureList = [
     {
-      icon: <BookmarkIcon sx={{ color: "#9a95a7", fontSize: "20px" }} />,
+      icon: <BookmarkIcon sx={{ color: "#4B5563", fontSize: 20 }} />,
       path: "/save-blog/saved",
-      name: "Saved items",
+      name: "Saved Items",
     },
     {
-      icon: <PersonIcon sx={{ color: "#9a95a7", fontSize: "20px" }} />,
-      name: "Your profile",
+      icon: <PersonIcon sx={{ color: "#4B5563", fontSize: 20 }} />,
       path: "/profile/blog",
+      name: "Your Profile",
     },
     {
-      icon: <PeopleIcon sx={{ color: "#9a95a7", fontSize: "20px" }} />,
-      name: "Friends list",
+      icon: <PeopleIcon sx={{ color: "#4B5563", fontSize: 20 }} />,
       path: "/relationship/friendList",
+      name: "Friends List",
     },
   ];
+
   return (
-    <div className="w-[225px] rounded-xl flex flex-col gap-5 ">
-      <div className="w-full min-h-60 pb-2 rounded-xl bg-boxColor flex flex-col border-solid border-border_element border-[2px]">
-        <div className="w-full h-24 rounded-t-xl relative flex flex-col">
-          <div className="flex-[2_0_0] rounded-t-xl bg-gradient-to-r from-[#a0b4b7] to-[#c2d8db]"></div>
-          <div className="flex-[1_0_0]"></div>
-          <Avatar
-            src="https://docs.material-tailwind.com/img/face-2.jpg"
-            alt="avatar"
-            size="xl"
-            className="absolute translate-y-[25%] left-[50%] translate-x-[-50%]"
-          />
-        </div>
-        <div className="w-full flex flex-col items-center gap-1">
-          <h1 className="text-base font-bold text-title">Tan Nguyen</h1>
-          <p className="text-sm text-small_text">Studen at fpt university</p>
-        </div>
-        <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-        {featureList.map((vl, idx) => (
-          <div
-            key={idx}
-            className="py-1 pl-2 w-full hover:bg-blue-gray-50 flex justify-start gap-4 cursor-pointer"
-            onClick={() => navigation(vl.path)}
-          >
-            {vl.icon}
-            <p className="text-sm text-click_title font-bold">{vl.name}</p>
-          </div>
-        ))}
+    <aside className="w-[240px] h-fit bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
+      {/* Top Banner & Avatar */}
+      <div className="relative h-24 bg-gradient-to-r from-[#a0b4b7] to-[#c2d8db]">
+        <Avatar
+          src="https://docs.material-tailwind.com/img/face-2.jpg"
+          alt="avatar"
+          size="xl"
+          className="absolute left-1/2 bottom-[-20px] transform -translate-x-1/2 border-[3px] border-white shadow-md"
+        />
       </div>
-    </div>
+
+      {/* User Info */}
+      <div className="mt-6 pb-2 flex flex-col items-center text-center px-4">
+        <h1 className="text-base font-semibold text-gray-800">Tan Nguyen</h1>
+        <p className="text-sm text-gray-500">Student at FPT University</p>
+      </div>
+
+      <hr className="border-t border-gray-200 mx-4 mb-2" />
+
+      {/* Feature List */}
+      <nav className="flex flex-col gap-1 px-2 pb-1">
+        {featureList.map((item, idx) => (
+          <button
+            key={idx}
+            onClick={() => navigate(item.path)}
+            className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition-colors"
+          >
+            {item.icon}
+            <span className="text-sm text-gray-700 font-medium">
+              {item.name}
+            </span>
+          </button>
+        ))}
+      </nav>
+    </aside>
   );
 }
 

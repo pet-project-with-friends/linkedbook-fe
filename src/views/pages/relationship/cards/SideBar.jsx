@@ -67,7 +67,7 @@ function SideBar() {
   ];
 
   return (
-    <div className="w-[20rem] sticky top-5 flex flex-col gap-4">
+    <div className="sticky flex-1 top-5 flex flex-col gap-4 ">
       <div className="h-max w-full flex flex-col gap-2 bg-boxColor rounded-xl pb-[20px] border-solid border-border_element border-[2px]">
         <h1 className="text-base font-bold text-title w-full p-[20px] border-b-2 border-solid border-gray-200">
           Manage my network
