@@ -83,7 +83,7 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
             color: "#333",
           }}
         >
-          UserName's post
+          {`    UserName's post`}
           <IconButton onClick={isClose}>
             <CloseIcon />
           </IconButton>
@@ -108,6 +108,7 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
                   onClick={() => handleOpenPreview(src)}
                   className={`relative ${colSpanClass} ${rowSpanClass} overflow-hidden rounded-xl shadow hover:shadow-md transition`}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={src}
                     alt={`img-${index}`}
@@ -158,6 +159,7 @@ const ImageArtGrid = ({ isOpen, isClose }) => {
             p: 2,
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={previewImage}
             alt="Preview"

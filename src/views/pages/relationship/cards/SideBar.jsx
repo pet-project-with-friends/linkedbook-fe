@@ -7,7 +7,6 @@ import PeopleIcon from "@mui/icons-material/People";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import Link from "next/link.js";
 import { usePathname, useRouter } from "next/navigation.js";
-import { useState } from "react";
 
 const themeIcon = {
   color: "#9a95a7",
@@ -20,7 +19,6 @@ const themeIconActive = {
 };
 
 function SideBar() {
-  const [value, setValue] = useState("");
   const pathname = usePathname();
   const navigate = useRouter();
 

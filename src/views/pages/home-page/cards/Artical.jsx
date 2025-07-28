@@ -81,7 +81,6 @@ function Article({ openImage, item }) {
                   alignItems: "flex-start",
                   gap: 1,
                   display: "flex",
-                  alignItems: "center",
                 }}
               >
                 <ListItemIcon>
@@ -104,7 +103,6 @@ function Article({ openImage, item }) {
                   alignItems: "flex-start",
                   gap: 1,
                   display: "flex",
-                  alignItems: "center",
                 }}
               >
                 <ListItemIcon>
@@ -129,7 +127,6 @@ function Article({ openImage, item }) {
                   alignItems: "flex-start",
                   gap: 1,
                   display: "flex",
-                  alignItems: "center",
                 }}
               >
                 <ListItemIcon>
